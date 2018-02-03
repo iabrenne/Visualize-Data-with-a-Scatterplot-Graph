@@ -25,6 +25,9 @@ const svg = d3.select("body")
            .attr("width", w)
            .attr("height", h);
 
+
+const mmssParser = d3.timeParse("%M:%S");
+
 svg.selectAll("circle")
    .data(dataset)
    .enter()
@@ -34,11 +37,16 @@ svg.selectAll("circle")
    .attr("r", (d) => circleRadius)
    .attr("stroke","black")
    .attr("class","dot")
-   .attr("data-xvalue", d=>d.Year)
-   .attr("data-yvalue", d=>d.Seconds)
+   .attr("data-xvalue", d=>
+         Number (d.Year.toString().replace(",",""))
+        )
+   .attr("data-yvalue", d=>mmssParser(d.Time));
 
-const xAxis = d3.axisBottom(xScale);
+const xAxis = d3.axisBottom(xScale)
+                .tickFormat(d3.format("d") );
+
 const yAxis = d3.axisLeft(yScale);
+
 
 svg.append("g")
    .attr("id","x-axis")
