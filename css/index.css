@@ -5,3 +5,11 @@ h1{
 .dot{
     fill: aquamarine;
 }
+
+
+#tooltip{
+    position: absolute;
+    width:125px;
+    top:700px;
+    left:200px;
+}

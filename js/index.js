@@ -2,6 +2,7 @@ const w = 1500;
 const h = 750;
 const padding = 80;
 const circleRadius = 8;
+const tooltipOffset = 50;
 
 minYear = d3.min(dataset, d=>d.Year);
 maxYear = d3.max(dataset, d=>d.Year);
@@ -42,7 +43,22 @@ svg.selectAll("circle")
    .attr("data-xvalue", d=>
          Number (d.Year.toString().replace(",",""))
         )
-   .attr("data-yvalue", d=>mmssParser(d.Time));
+   .attr("data-yvalue", d=>mmssParser(d.Time))
+   .on("mouseover",(d)=>{ 
+
+    let tooltipElem = document.getElementById("tooltip");
+
+    tooltipElem.style.display = "block";
+    
+    tooltipElem.innerText = `Name : ${d.Name}\n` ;
+
+    tooltipElem.setAttribute("data-year",
+                              Number (d.Year.toString().replace(",","")));
+
+    tooltipElem.style.left= (xScale(d.Year) + tooltipOffset) + "px";
+
+    })
+
 
 const xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format("d") );
