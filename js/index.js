@@ -41,6 +41,7 @@ svg.selectAll("circle")
    .attr("r", (d) => circleRadius)
    .attr("stroke","black")
    .attr("class","dot")
+   .attr("class", d=>d.Doping == "" ? "noDoping" : "doping")
    .attr("data-xvalue", d=>
          Number (d.Year.toString().replace(",",""))
         )
@@ -91,7 +92,7 @@ svg.append("g")
 
 const ordinal = d3.scaleOrdinal()
                 .domain(["Has Doping Allegations", "No Doping Allegations"])
-                .range(["rgb(169, 110, 91", "rgb(150,206,180)"]);
+                .range(["rgb(169, 110, 91)", "rgb(150,206,180)"]);
 
 
 svg.append("g")

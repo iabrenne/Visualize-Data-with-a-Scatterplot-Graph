@@ -3,13 +3,20 @@ h1{
 }
 
 .dot{
-    fill: aquamarine;
+}
+
+.doping{
+    fill:rgb(169, 110, 91)
+}
+
+.noDoping{
+    fill:rgb(150,206,180)
 }
 
 
 #tooltip{
     position: absolute;
-    width:200px;
+    width:215px;
     top:700px;
     left:200px;
 }
