@@ -17,7 +17,7 @@ const xScale =  d3.scaleLinear()
                   .range([padding, w-padding]);
 
 const yScale =  d3.scaleLinear()
-                  .domain( [maxSeconds + (yRange * .05), minSeconds - (yRange * .05) ])
+                  .domain( [maxSeconds + (yRange * .06), minSeconds - (yRange * .06) ])
                   .range([h - padding, padding]);
 
 
