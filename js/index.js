@@ -2,7 +2,8 @@ const w = 1500;
 const h = 750;
 const padding = 80;
 const circleRadius = 8;
-const tooltipOffset = 50;
+const tooltipOffsetHorizontal = 25;
+const tooltipOffsetVertical = 50;
 
 minYear = d3.min(dataset, d=>d.Year);
 maxYear = d3.max(dataset, d=>d.Year);
@@ -55,10 +56,17 @@ svg.selectAll("circle")
     tooltipElem.setAttribute("data-year",
                               Number (d.Year.toString().replace(",","")));
 
-    tooltipElem.style.left= (xScale(d.Year) + tooltipOffset) + "px";
+    tooltipElem.style.left= (xScale(d.Year) + tooltipOffsetHorizontal) + "px";
+    tooltipElem.style.top = (yScale(d.Seconds) + tooltipOffsetVertical) + "px";
 
     })
+   .on("mouseout",()=>{ 
 
+    let tooltipElem = document.getElementById("tooltip");
+        
+    tooltipElem.style.display = "none";
+
+    });
 
 const xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format("d") );
