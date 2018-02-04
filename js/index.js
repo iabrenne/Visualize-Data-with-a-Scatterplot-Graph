@@ -17,8 +17,10 @@ const xScale =  d3.scaleLinear()
                   .range([padding, w-padding]);
 
 const yScale =  d3.scaleLinear()
-                  .domain([minSeconds - (yRange * .05), maxSeconds + (yRange * .05) ])
+                  .domain( [maxSeconds + (yRange * .05), minSeconds - (yRange * .05) ])
                   .range([h - padding, padding]);
+
+
 
 const svg = d3.select("body")
            .append("svg")
@@ -45,7 +47,9 @@ svg.selectAll("circle")
 const xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format("d") );
 
-const yAxis = d3.axisLeft(yScale);
+const yAxis = d3.axisLeft(yScale)
+                // take seconds and convert to MM:SS format for the ticks on the Y-Scale
+                .tickFormat( d=> d3.timeFormat("%M:%S")(d3.timeParse("%s")(d3.format("d")(d)) ));
 
 
 svg.append("g")
