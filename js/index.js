@@ -62,3 +62,22 @@ svg.append("g")
    .attr("transform","translate(" + padding + ", 0)")
    .call(yAxis);
 
+
+// Create a legend 
+
+const ordinal = d3.scaleOrdinal()
+                .domain(["Has Doping Allegations", "No Doping Allegations"])
+                .range(["rgb(169, 110, 91", "rgb(150,206,180)"]);
+
+
+svg.append("g")
+   .attr("id","legend")
+   .attr("transform","translate(1200,20)");
+
+const legendOrdinal = d3.legendColor()
+                        .shape("rect")
+                        .scale(ordinal);
+
+svg.select("#legend")
+   .call(legendOrdinal);
+                                
